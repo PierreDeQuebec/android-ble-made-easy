@@ -115,7 +115,7 @@ class BLE {
 	 * @throws HardwareNotPresentException If no hardware is present on the running device
 	 **/
 	constructor(componentActivity: ComponentActivity) {
-		this.log("Setting up on a ComponentActivity!")
+		Log.d("BluetoothMadeEasy","Setting up on a ComponentActivity!")
 		this.componentActivity = componentActivity
 		this.context = componentActivity
 		this.setup()
@@ -127,7 +127,7 @@ class BLE {
 	 * @throws HardwareNotPresentException If no hardware is present on the running device
 	 **/
 	constructor(activity: AppCompatActivity) {
-		this.log("Setting up on an AppCompatActivity!")
+		Log.d("BluetoothMadeEasy","Setting up on an AppCompatActivity!")
 		this.appCompatActivity = activity
 		this.context = activity
 		this.setup()
@@ -139,7 +139,7 @@ class BLE {
 	 * @throws HardwareNotPresentException If no hardware is present on the running device
 	 **/
 	constructor(fragment: Fragment) {
-		this.log("Setting up on a Fragment!")
+		Log.d("BluetoothMadeEasy","Setting up on a Fragment!")
 		this.fragment = fragment
 		this.context = fragment.requireContext()
 		this.setup()
@@ -154,7 +154,7 @@ class BLE {
 
 	// region Contracts related methods
 	private fun registerContracts() {
-		this.log("Registering contracts...")
+		Log.d("BluetoothMadeEasy", "Registering contracts...")
 
 		this.adapterContract = ContractHandler(BluetoothAdapterContract(), this.componentActivity, this.appCompatActivity, this.fragment)
 		this.permissionContract = ContractHandler(RequestMultiplePermissions(), this.componentActivity, this.appCompatActivity, this.fragment)
@@ -182,20 +182,20 @@ class BLE {
 
 	// region Hardware feature related methods
 	private fun verifyBluetoothHardwareFeature() {
-		this.log("Checking bluetooth hardware on device...")
+		Log.d("BluetoothMadeEasy", "Checking bluetooth hardware on device...")
 
 		context.packageManager.let {
 			if (!PermissionUtils.isBluetoothLowEnergyPresentOnDevice(it) || !PermissionUtils.isBluetoothPresentOnDevice(it)) {
-				this.log("No bluetooth hardware detected on this device!")
+				Log.d("BluetoothMadeEasy", "No bluetooth hardware detected on this device!")
 				throw HardwareNotPresentException()
 			} else {
-				this.log("Detected bluetooth hardware on this device!")
+				Log.d("BluetoothMadeEasy", "Detected bluetooth hardware on this device!")
 			}
 		}
 	}
 
 	private fun setupBluetoothService() {
-		this.log("Setting up bluetooth service...")
+		Log.d("BluetoothMadeEasy", "Setting up bluetooth service...")
 		this.manager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
 		this.adapter = this.manager?.adapter
 		this.scanner = this.adapter?.bluetoothLeScanner
