@@ -115,7 +115,7 @@ class BLE {
 	 * @throws HardwareNotPresentException If no hardware is present on the running device
 	 **/
 	constructor(componentActivity: ComponentActivity) {
-		this.log("Setting up on a ComponentActivity!")
+		Log.d("BluetoothMadeEasy","Setting up on a ComponentActivity!")
 		this.componentActivity = componentActivity
 		this.context = componentActivity
 		this.setup()
@@ -127,7 +127,7 @@ class BLE {
 	 * @throws HardwareNotPresentException If no hardware is present on the running device
 	 **/
 	constructor(activity: AppCompatActivity) {
-		this.log("Setting up on an AppCompatActivity!")
+		Log.d("BluetoothMadeEasy","Setting up on an AppCompatActivity!")
 		this.appCompatActivity = activity
 		this.context = activity
 		this.setup()
@@ -139,7 +139,7 @@ class BLE {
 	 * @throws HardwareNotPresentException If no hardware is present on the running device
 	 **/
 	constructor(fragment: Fragment) {
-		this.log("Setting up on a Fragment!")
+		Log.d("BluetoothMadeEasy","Setting up on a Fragment!")
 		this.fragment = fragment
 		this.context = fragment.requireContext()
 		this.setup()
